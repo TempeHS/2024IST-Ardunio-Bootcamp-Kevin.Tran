@@ -16,8 +16,16 @@
     https://www.arduino.cc/reference/en/language/variables/data-types/stringobject/
 */
 
-void setup() {
+String myString = "Hello World";
+int myInt = 3;
+bool myBool = false;
+float myFloat = 3.14;
+long myLong = 3.1976975924781;
 
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Serial Monitor is configured to 9600");
+  Serial.println("------------------------------------");
 }
 
 void loop() {
