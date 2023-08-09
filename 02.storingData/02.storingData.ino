@@ -21,6 +21,8 @@ int myInt = 3;
 bool myBool = false;
 float myFloat = 3.14;
 long myLong = 3.1976975924781;
+unsigned int myInt2 = 5;
+static unsigned int myInt3 = 7;
 
 void setup() {
   Serial.begin(9600);
@@ -29,5 +31,9 @@ void setup() {
 }
 
 void loop() {
-
+  myBool = true;
+  myString = myBool;
+  myInt = myFloat;
+  Serial.println(String(myLong));
+  // data is lost
 }
