@@ -18,14 +18,32 @@
     https://github.com/TempeHS/TempeHS_Ardunio_Boilerplate/blob/main/Ardunio_Bootcamp/10.servoMotor/Bootcamp-servoMotor.png
 */
 
-//The Servo-h library is built into Ardunio IDE there is no need to side load it like the Ultrasonic Sensor library
+#include <Servo.h>
+#include "Ultrasonic.h"
 
+Servo myServo;
+static unsigned int myServoPin = 7;
+static unsigned int myUSPin = 6;
+unsigned long rangeInCM;
+Ultrasonic myUSsensor(myUSPin);
 
 void setup() {
-
+  myServo.attach(myServoPin);
+  myServo.write(0);
+  delay(100);
+  Serial.begin(9600);
+  Serial.println("SM is working");
+  Serial.println("-------------");
 }
 
 // The loop function runs over and over again forever
 void loop() {
 
+  readUS();
+
+  if (rangeInCM <= 25) {
+    openGate();
+  } else {
+    closeGate();
+  }
 }

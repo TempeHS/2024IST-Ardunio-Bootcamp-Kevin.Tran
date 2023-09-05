@@ -32,7 +32,18 @@
 */
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Serial monitor is configured to 9600");
+  Serial.println("------------------------------------");
+  int myInt1 = 4;
+  int myInt2 = 2;
+  int result = myInt1 + myInt2;
 
+  while (result <= 500) {
+    Serial.println(result);
+    result++;
+    result++;
+  }
 }
 
 void loop() {
