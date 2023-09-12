@@ -24,12 +24,13 @@
 Servo myServo;
 static unsigned int myServoPin = 7;
 static unsigned int myUSPin = 6;
-unsigned long rangeInCM;
 Ultrasonic myUSsensor(myUSPin);
+bool isGateOpen;
 
 void setup() {
   myServo.attach(myServoPin);
   myServo.write(0);
+  isGateOpen = false;
   delay(100);
   Serial.begin(9600);
   Serial.println("SM is working");
@@ -38,12 +39,9 @@ void setup() {
 
 // The loop function runs over and over again forever
 void loop() {
-
-  readUS();
-
-  if (rangeInCM <= 25) {
+  if (readUS() <= 25) {
     openGate();
-  } else {
+  } else if (readUS() > 25 ){
     closeGate();
   }
 }

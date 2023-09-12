@@ -1,16 +1,21 @@
 void openGate () {
   for (int i = 0; i <= 255; i++) {
     myServo.write(i);
-    delay(75);
+    delay(15);
+    isGateOpen = true;
   }
 }
 
 void closeGate () {
-  myServo.write(0);
-  delay(1000);
+  for (int i = 0; i <= 255; i++) {
+    myServo.write(255-i);
+    delay(15);
+    isGateOpen = false;
+  }
 }
 
-void readUS () {
-  rangeInCM = myUSsensor.MeasureInCentimeters();
+unsigned long readUS () {
+  unsigned long rangeInCM = myUSsensor.MeasureInCentimeters();
   Serial.println(rangeInCM);
+  return rangeInCM;
 }
